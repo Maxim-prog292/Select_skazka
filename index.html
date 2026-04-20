@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>Глассморфизм Блоки</title>
+    <style>
+      @font-face {
+        font-family: TT;
+        src: url(TT-Paplane-Regular.ttf);
+      }
+      * {
+        font-family: TT;
+        letter-spacing: 1px;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+
+        touch-action: none;
+        user-select: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: url(back.png);
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      h1 {
+        font-size: 60px;
+      }
+
+      .container {
+        display: flex;
+        width: 1600px;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .block {
+        width: 700px;
+        height: 400px;
+        border-radius: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="block meteor"></div>
+
+      <div class="block tride"></div>
+    </div>
+    <script>
+      window.addEventListener("mousewheel", function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          // Если используется более одного пальца
+          if (e.touches.length > 1) {
+            e.preventDefault(); // Отключаем действие по умолчанию
+          }
+        },
+        { passive: false },
+      ); // { passive: false } важно для предотвращения поведения по умолчанию
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          if (e.touches.length > 1) {
+            e.preventDefault(); // Отключаем зумирование двумя пальцами
+          }
+        },
+        { passive: false },
+      ); // { passive: false } важно для отмены действия по умолчанию
+      document.addEventListener("click", (e) => {
+        let target = e.target;
+        console.log(target);
+        if (target.classList.contains("meteor")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/planetariy_game_1/";
+        } else if (target.classList.contains("planet")) {
+          window.location.href =
+            "https://maxim-prog292.github.io/Help_Vasilisa/";
+        }
+      });
+    </script>
+  </body>
+</html>
